@@ -1,0 +1,7 @@
+
+# Virtual enviroment
+venv/
+# Cache
+__pycache__/
+# Other
+.python-version
