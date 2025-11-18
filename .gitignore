@@ -1,7 +1,9 @@
-
 # Virtual enviroment
-venv/
+.venv/
 # Cache
+.mypy_cache/
 __pycache__/
+.ruff_cache/
 # Other
+*.pyc
 .python-version
