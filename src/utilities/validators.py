@@ -42,7 +42,7 @@ class Validator:
                 user_input = input(string)
                 continue
 
-
+    @staticmethod
     def validate_str(user_input: str, string: str) -> str:
         while True:
             if user_input.lower() == "q":

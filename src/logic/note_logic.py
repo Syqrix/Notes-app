@@ -21,14 +21,14 @@ class NoteOperations:
         while True:
             user_topic: str = Validator.validate_str(
                 input("Please enter your topic: "), "Please enter your topic: ")
-            checker: bool = self.logic_check.check_for_note(user_topic)
+            checker: bool = self.logic_check.check_for_note(user_topic.capitalize())
             if checker:
                 print(
                     "Note-app already has this topic. You can have only one original topic. Try another one.")
                 continue
             else:
                 user_text: str = input("Please enter your text: ")
-                new_object: bool = Note(
+                new_object: object = Note(
                     user_topic.capitalize(), user_text.capitalize())
                 self.notes_list.list_of_notes.append(new_object)
                 print("Note has been created!")
@@ -41,7 +41,7 @@ class NoteOperations:
         note_check: bool = self.logic_check.check_for_note(
             user_input_topic.capitalize())
         if note_check:
-            data: object = self.logic_check.return_note(
+            data: Note = self.logic_check.return_note(
                 user_input_topic.capitalize())
             print(data.text)
         else:
@@ -58,7 +58,7 @@ class NoteOperations:
         note_check: bool = self.logic_check.check_for_note(
             user_input_topic.capitalize())
         if note_check:
-            data: object = self.logic_check.return_note(
+            data: Note = self.logic_check.return_note(
                 user_input_topic.capitalize())
             print("\n Available_operations: ")
             for key, text in operations.items():
@@ -78,16 +78,15 @@ class NoteOperations:
                 break
 
         if user_answer == 1:
-            new_topic = Validator.validate_str(
+            new_topic: str = Validator.validate_str(
                 input("New topic: "), "New topic: ")
-            check = self.logic_check.check_for_note(new_topic.capitalize())
+            check: bool = self.logic_check.check_for_note(new_topic.capitalize())
             if check:
-                user_check = Validator.validate_y_or_n_str
-                (input(
-                    "You already have this original topic. Do you want to add sufix (1,2 and etc) ? "),
+                user_check: bool = Validator.validate_y_or_n_str(
+                    input("You already have this original topic. Do you want to add sufix (1,2 and etc) ? "),
                   "You already have this original topic. Do you want to add sufix (1,2 and etc) ? ")
                 if user_check:
-                    last_character = data.topic[-1]
+                    last_character: str = data.topic[-1]
                     if last_character.isdigit():
                         last_character = str(int(last_character) + 1)
                         data.topic = new_topic.capitalize().replace(new_topic[-1], last_character)
@@ -95,8 +94,10 @@ class NoteOperations:
                         data.topic = (new_topic + "1").capitalize()
                 else:
                     return
+            else:
+                data.topic = new_topic.capitalize()
         else:
-            new_text = input("New text: ")
+            new_text: str = input("New text: ")
             data.text = new_text.capitalize()
 
 
@@ -114,7 +115,7 @@ class NoteOperations:
         user_answer: bool = Validator.validate_y_or_n_str(
             input("Do you really want to delete this note? "), "Do you really want to delete this note? ")
         if user_answer:
-            data = self.logic_check.return_note(user_input_topic.capitalize())
+            data: Note = self.logic_check.return_note(user_input_topic.capitalize())
             self.notes_list.list_of_notes.remove(data)
             print("Note has been deleted!")
         else:
