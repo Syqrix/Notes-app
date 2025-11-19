@@ -8,12 +8,14 @@ class NoteOperations:
         self.logic_check = logic_check
         self.notes_list = notes_list
 
+
     def show_topics(self) -> None:
         if self.notes_list.list_of_notes:
             for note in self.notes_list.list_of_notes:
                 print(note.topic)
         else:
             print("There are'nt notes in note-app yet")
+
 
     def create_note(self) -> None:
         while True:
@@ -32,6 +34,7 @@ class NoteOperations:
                 print("Note has been created!")
                 break
 
+
     def open_note(self) -> None:
         user_input_topic: str = Validator.validate_str(
             input("What topic do you want to open? "), "What topic do you want to open? ")
@@ -44,13 +47,14 @@ class NoteOperations:
         else:
             print("There is no such topic in note-app")
 
+
     def edit_note(self) -> None:
         operations: dict = {
             1: "Topic",
             2: "Text"
         }
         user_input_topic: str = Validator.validate_str(
-            input("What note do you want to change? "), "What note do you want to change?")
+            input("What note do you want to change? "), "What note do you want to change? ")
         note_check: bool = self.logic_check.check_for_note(
             user_input_topic.capitalize())
         if note_check:
@@ -72,13 +76,29 @@ class NoteOperations:
                 continue
             else:
                 break
+
         if user_answer == 1:
             new_topic = Validator.validate_str(
                 input("New topic: "), "New topic: ")
-            data.topic = new_topic.capitalize()
+            check = self.logic_check.check_for_note(new_topic.capitalize())
+            if check:
+                user_check = Validator.validate_y_or_n_str
+                (input(
+                    "You already have this original topic. Do you want to add sufix (1,2 and etc) ? "),
+                  "You already have this original topic. Do you want to add sufix (1,2 and etc) ? ")
+                if user_check:
+                    last_character = data.topic[-1]
+                    if last_character.isdigit():
+                        last_character = str(int(last_character) + 1)
+                        data.topic = new_topic.capitalize().replace(new_topic[-1], last_character)
+                    else:
+                        data.topic = (new_topic + "1").capitalize()
+                else:
+                    return
         else:
             new_text = input("New text: ")
             data.text = new_text.capitalize()
+
 
     def delete_note(self) -> None:
         while True:

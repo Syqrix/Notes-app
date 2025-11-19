@@ -4,8 +4,9 @@ import sys
 import time
 
 class Menu:
-    def __init__(self, note_operation): 
+    def __init__(self, note_operation, data_manager): 
         self.note_operation = note_operation
+        self.data_manager = data_manager
 
     
     def choose_the_operation(self) -> None:
@@ -39,6 +40,7 @@ class Menu:
 
 
     def exit_app(self) -> SystemExit:
+        self.data_manager.save_data()
         print("Exiting...")
         time.sleep(1)
         sys.exit()

@@ -25,23 +25,6 @@ class LogicChecker:
 
         return False
 
-    def return_note_index(self, user_input: str) -> Union[int, None]:
-        self.notes_list.list_of_notes.sort(key=lambda note: note.topic)
-        min: int = 0
-        max: int = len(self.notes_list.list_of_notes) - 1
-
-        while min <= max:
-            avg: int = (max + min) // 2
-            if self.notes_list.list_of_notes[avg].topic > user_input:
-                max = avg - 1
-                continue
-            elif self.notes_list.list_of_notes[avg].topic < user_input:
-                min = avg + 1
-                continue
-            else:
-                return avg
-        return None
-
     def return_note(self, user_input: str) -> Union[object, None]:
         self.notes_list.list_of_notes.sort(key=lambda note: note.topic)
         min: int = 0
