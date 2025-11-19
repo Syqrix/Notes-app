@@ -6,7 +6,6 @@ class LogicChecker:
     def __init__(self, notes_list):
         self.notes_list = notes_list
 
-
     def check_for_note(self, user_input: str) -> bool:
         self.notes_list.list_of_notes.sort(key=lambda note: note.topic)
         min: int = 0
@@ -29,7 +28,7 @@ class LogicChecker:
         self.notes_list.list_of_notes.sort(key=lambda note: note.topic)
         min: int = 0
         max: int = len(self.notes_list.list_of_notes) - 1
-        
+
         while min <= max:
             avg: int = (max + min) // 2
             if self.notes_list.list_of_notes[avg].topic > user_input:

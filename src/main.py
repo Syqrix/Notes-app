@@ -4,13 +4,11 @@ from logic import Menu, NotesList, NoteOperations, JsonDataManager
 from utilities import LogicChecker
 
 
-
 class App:
     def __init__(self, ui: Ui, menu: Menu, data_manager: JsonDataManager):
         self.ui = ui
-        self.menu = menu 
+        self.menu = menu
         self.data_manager = data_manager
-
 
     def run(self) -> None:
         self.data_manager.check_folder()

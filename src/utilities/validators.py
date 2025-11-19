@@ -18,8 +18,7 @@ class Validator:
                 continue
             else:
                 return int(user_input)
-    
-    
+
     @staticmethod
     def validate_y_or_n_str(user_input: str, string: str) -> bool:
         while True:
@@ -33,9 +32,9 @@ class Validator:
                 print("Olny letters. Try again.")
                 user_input = input(string)
                 continue
-            elif user_input.lower() in ['y', 'ye', 'yes']:
+            elif user_input.lower() in ["y", "ye", "yes"]:
                 return True
-            elif user_input.lower() in ['n', 'no']:
+            elif user_input.lower() in ["n", "no"]:
                 return False
             else:
                 print("Wrong value. Try again.")
