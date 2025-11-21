@@ -13,18 +13,20 @@ class NoteOperations:
             for note in self.notes_list.list_of_notes:
                 print(note.topic)
         else:
-            print("There are'nt notes in note-app yet")
+            print("There aren't notes in note-app yet")
 
     def create_note(self) -> None:
         while True:
             user_topic: str = Validator.validate_str(
-                input("Please enter your topic: "), "Please enter your topic: "
+                input(
+                    "Please enter your topic: "), "Please enter your topic:  d"
             )
-            checker: bool = self.logic_check.check_for_note(user_topic.capitalize())
+            checker: bool = self.logic_check.check_for_note(  # nopep8
+                user_topic.capitalize()
+            )
             if checker:
                 print(
-                    "Note-app already has this topic. You can have only one original topic. Try another one."
-                )
+                    "You have this topic, it's original. Try another one.")
                 continue
             else:
                 user_text: str = input("Please enter your text: ")
@@ -44,7 +46,8 @@ class NoteOperations:
             user_input_topic.capitalize()
         )
         if note_check:
-            data: Note = self.logic_check.return_note(user_input_topic.capitalize())
+            data: Note = self.logic_check.return_note(
+                user_input_topic.capitalize())
             print(data.text)
         else:
             print("There is no such topic in note-app")
@@ -59,7 +62,8 @@ class NoteOperations:
             user_input_topic.capitalize()
         )
         if note_check:
-            data: Note = self.logic_check.return_note(user_input_topic.capitalize())
+            data: Note = self.logic_check.return_note(
+                user_input_topic.capitalize())
             print("\n Available_operations: ")
             for key, text in operations.items():
                 print(f"{key}: {text}")
@@ -68,24 +72,25 @@ class NoteOperations:
 
         while True:
             user_answer: int = Validator.validate_int_number(
-                input("\nWhat do you want to change? "), "\nWhat do you want to change?"
+                input("\nWhat do you want to change? "),
+                "\nWhat do you want to change? ",
             )
 
             if user_answer not in operations:
-                print(f"Only in this range: 0-{str(len(operations))}")
+                print(f"Only in this range: 1-{str(len(operations))}")
                 continue
             else:
                 break
 
         if user_answer == 1:
-            new_topic: str = Validator.validate_str(input("New topic: "), "New topic: ")
-            check: bool = self.logic_check.check_for_note(new_topic.capitalize())
+            new_topic: str = Validator.validate_str(
+                input("New topic: "), "New topic: ")
+            new_topic = new_topic.capitalize()
+            check: bool = self.logic_check.check_for_note(new_topic)
             if check:
                 user_check: bool = Validator.validate_y_or_n_str(
-                    input(
-                        "You already have this original topic. Do you want to add sufix (1,2 and etc) ? "
-                    ),
-                    "You already have this original topic. Do you want to add sufix (1,2 and etc) ? ",
+                    input("You have this topic. Do you want to add sufix? "),
+                    "You have this topic. Do you want to add sufix? ",
                 )
                 if user_check:
                     last_character: str = data.topic[-1]
@@ -106,14 +111,13 @@ class NoteOperations:
 
     def delete_note(self) -> None:
         while True:
-            user_input_topic: str = Validator.validate_str(
+            user_topic: str = Validator.validate_str(
                 input("What note do you want to delete. Enter your topic: "),
                 "What note do you want to delete. Enter your topic: ",
             )
-            answer_of_func: bool = self.logic_check.check_for_note(
-                user_input_topic.capitalize()
-            )
-            if answer_of_func is False:
+            user_topic = user_topic.capitalize()
+            check_note: bool = self.logic_check.check_for_note(user_topic)
+            if check_note is False:
                 continue
             else:
                 break
@@ -122,7 +126,7 @@ class NoteOperations:
             "Do you really want to delete this note? ",
         )
         if user_answer:
-            data: Note = self.logic_check.return_note(user_input_topic.capitalize())
+            data: Note = self.logic_check.return_note(user_topic)
             self.notes_list.list_of_notes.remove(data)
             print("Note has been deleted!")
         else:

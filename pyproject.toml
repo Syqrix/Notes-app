@@ -10,3 +10,5 @@ dependencies = [
     "pytest>=9.0.0",
     "ruff>=0.14.4",
 ]
+[tool.black]
+line-length = 80

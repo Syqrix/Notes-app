@@ -36,5 +36,6 @@ class JsonDataManager:
             data: dict = json.load(file)
             data_of_notes: dict = data["notes"]
             for note in data_of_notes:
-                new_note: object = Note(topic=note.get("topic"), text=note.get("text"))
+                new_note: object = Note(
+                    topic=note.get("topic"), text=note.get("text"))
                 self.notes_list.list_of_notes.append(new_note)

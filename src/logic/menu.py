@@ -34,7 +34,7 @@ class Menu:
                 )
 
                 if user_answer not in operations:
-                    print(f"Only in this range: 0-{str(len(operations))}")
+                    print(f"Only in this range: 1-{str(len(operations))}")
                     continue
                 else:
                     _, func = operations[user_answer]

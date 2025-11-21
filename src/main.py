@@ -1,5 +1,5 @@
 # This main module of the app
-from ui.comunication import Ui
+from ui import Ui
 from logic import Menu, NotesList, NoteOperations, JsonDataManager
 from utilities import LogicChecker
 
