@@ -8,7 +8,7 @@ I developed this project to practice my skills. It is a simple console-based pho
 + Python: 3.12.3
 + Packer manager: Uv
 + Utilites: MyPy, Ruff, Pytest, Black
-## Instalation
+## Installation
 How to install:
 
 1) git clone https://github.com/Syqrix/Notes-app.git
@@ -17,3 +17,4 @@ How to install:
 4) Write down in your console: python/python3 main.py
 ## Last words
 I would appreciate any help or feedback on how to improve this project or correct any mistakes.
+
